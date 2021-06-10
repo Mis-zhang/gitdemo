@@ -8,7 +8,6 @@
 .App-logo {
   height: 10vmin;
   pointer-events: none;
-  align-self: start;
 }
 
 @media (prefers-reduced-motion: no-preference) {
