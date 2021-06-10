@@ -1,0 +1,34 @@
+
+.modalWarp {
+  .rowWarp {
+    padding: 0px 10px;
+
+    .labelWarp {
+      max-width: 100%;
+      flex: 0 0 20%;
+      flex-grow: 0;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .valueWarp {
+      flex: 1;
+    }
+  }
+
+  .formWarp {
+    :global(.ant-col-4) {
+      max-width: 100%;
+      flex: 0 0 20%;
+      max-width: 100%;
+    }
+
+    :global(.ant-spin-container) {
+      overflow: hidden;
+    }
+  }
+
+  :global(.ant-row-center) {
+    margin: 0 !important;
+  }
+}
