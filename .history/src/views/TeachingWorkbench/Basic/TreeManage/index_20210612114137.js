@@ -416,7 +416,7 @@ const Index = () => {
           tableProps={tableProps}
           paginationProps={paginationProps}
           handleProps={handleProps}
-          getAllkeys={(key) => getAllkeys(key)}
+          getAllkeys={getAllkeys}
           onChange={(e) => {
             setParams({
               ...params,

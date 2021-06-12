@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 import {
   KKBTable,
   KKBHeader,
@@ -8,23 +8,23 @@ import {
   Input,
   Modal,
   ConfigProvider,
-} from '@kkb/kkb-design';
-import zh_Cn from '@kkb/kkb-design/es/lib/locale/zh_CN';
-import 'antd/dist/antd.less';
-import { createFromIconfontCN } from '@ant-design/icons';
-import { text, time, money, avatar, group, name } from './mock';
-import { editTreeNode, getAllkeys } from '../../../../components/Tree/Utils';
+} from '@kkb/kkb-design'
+import zh_Cn from '@kkb/kkb-design/es/lib/locale/zh_CN'
+import 'antd/dist/antd.less'
+import { createFromIconfontCN } from '@ant-design/icons'
+import { text, time, money, avatar, group, name } from './mock'
+
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
-});
+})
 const Index = () => {
-  const [dataSource, setdataSource] = useState([]);
-  const [params, setParams] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [status, setStatus] = useState('');
-  const [isModalVisible, setisModalVisible] = useState(false);
-  const [value, setValue] = useState('');
-  const [title, settitle] = useState('');
+  const [dataSource, setdataSource] = useState([])
+  const [params, setParams] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [status, setStatus] = useState('')
+  const [isModalVisible, setisModalVisible] = useState(false)
+  const [value, setValue] = useState('')
+  const [title, settitle] = useState('')
   const columns = [
     {
       title: '姓名',
@@ -119,22 +119,22 @@ const Index = () => {
         {
           id: 1,
           label: '编辑编辑',
-          onClick: (props) => {
-            console.log(props);
+          onClick: props => {
+            console.log(props)
           },
           children: [
             {
               id: 11,
               label: '编辑编辑',
-              onClick: (props) => {
-                console.log(props);
+              onClick: props => {
+                console.log(props)
               },
             },
             {
               id: 12,
               label: '编辑编辑',
-              onClick: (props) => {
-                console.log(props);
+              onClick: props => {
+                console.log(props)
               },
             },
           ],
@@ -142,59 +142,58 @@ const Index = () => {
         {
           id: 2,
           label: <span style={{ color: 'red' }}>删除</span>,
-          onClick: (props) => {
-            console.log(props);
+          onClick: props => {
+            console.log(props)
           },
         },
         {
           id: 3,
           label: '详情',
-          onClick: (props) => {
-            console.log(props);
+          onClick: props => {
+            console.log(props)
           },
         },
         {
           id: 4,
           label: '评论',
-          onClick: (props) => {
-            console.log(props);
+          onClick: props => {
+            console.log(props)
           },
         },
         {
           id: 5,
           label: '复制',
-          onClick: (props) => {
-            console.log(props);
+          onClick: props => {
+            console.log(props)
           },
         },
       ],
     },
-  ];
+  ]
 
   function getRandomNumberByRange(start, end) {
-    return Math.floor(Math.random() * (end - start) + start);
+    return Math.floor(Math.random() * (end - start) + start)
   }
 
   useEffect(() => {
-    const list = [];
-    setLoading(true);
+    const list = []
+    setLoading(true)
     for (let i = 0; i < (params?.size || 10); i += 1) {
       list.push({
         id: i,
         name: name[getRandomNumberByRange(0, name.length)],
         text: text[getRandomNumberByRange(0, text.length)] || 1,
         money: money[getRandomNumberByRange(0, money.length)] || 0,
-        time:
-          time[getRandomNumberByRange(0, time.length)] || new Date().valueOf(),
+        time: time[getRandomNumberByRange(0, time.length)] || new Date().valueOf(),
         avatar: avatar[getRandomNumberByRange(0, avatar.length)],
         group: group[getRandomNumberByRange(0, group.length)].value,
-      });
+      })
     }
-    setdataSource(list);
+    setdataSource(list)
     setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, [params]);
+      setLoading(false)
+    }, 1000)
+  }, [params])
 
   const list = [
     {
@@ -205,7 +204,7 @@ const Index = () => {
       label: '订单中心',
       path: '/table/table',
     },
-  ];
+  ]
 
   const tableProps = {
     columns,
@@ -213,19 +212,18 @@ const Index = () => {
     rowKey: 'id',
     loading,
     onChange: (e, b, c) => {
-      setStatus(b.group);
-      console.log(e, b, c);
-      getAllkeys(editTreeNode, key, (num = 0));
+      setStatus(b.group)
+      console.log(e, b, c)
       setParams({
         ...params,
         status: b.group,
-      });
+      })
     },
-  };
+  }
 
   const paginationProps = {
     total: 87,
-  };
+  }
   const searchProps = {
     boxData: [
       {
@@ -316,21 +314,21 @@ const Index = () => {
         },
       },
     ],
-    searchFn: (values) => {
-      setParams({ ...values, ...params });
-      console.log(params);
+    searchFn: values => {
+      setParams({ ...values, ...params })
+      console.log(params)
     }, // 搜索按钮回调
-    searchResetFn: (values) => setParams({ ...values }), // 重置按钮回调
+    searchResetFn: values => setParams({ ...values }), // 重置按钮回调
     defaultValue: {
       basicName: '默认数据',
     },
-  };
+  }
 
   const options = [
     { label: '全部', value: '全部' },
     { label: '已接通', value: '已接通' },
     { label: '未接通', value: '未接通' },
-  ];
+  ]
   const handleProps = {
     leftArea: [
       {
@@ -349,40 +347,40 @@ const Index = () => {
         id: 1,
         label: '+ 新增',
         onClick: () => {
-          settitle('新增');
-          setisModalVisible(true);
+          settitle('新增')
+          setisModalVisible(true)
         },
       },
       {
         id: 2,
         label: '操作1',
         onClick: () => {
-          settitle('操作1');
-          setisModalVisible(true);
+          settitle('操作1')
+          setisModalVisible(true)
         },
       },
       {
         id: 3,
         label: '操作2',
         onClick: () => {
-          settitle('操作2');
-          setisModalVisible(true);
+          settitle('操作2')
+          setisModalVisible(true)
         },
       },
       {
         id: 4,
         label: '操作3',
         onClick: () => {
-          settitle('操作3');
-          setisModalVisible(true);
+          settitle('操作3')
+          setisModalVisible(true)
         },
       },
     ],
-  };
+  }
 
   useEffect(() => {
-    setValue('');
-  }, [isModalVisible]);
+    setValue('')
+  }, [isModalVisible])
 
   return (
     <ConfigProvider locale={zh_Cn}>
@@ -394,13 +392,11 @@ const Index = () => {
         onCancel={() => setisModalVisible(false)}
       >
         <div style={{ display: 'flex' }}>
-          <div style={{ display: 'flex', alignItems: 'center', width: '80px' }}>
-            请输入:
-          </div>
+          <div style={{ display: 'flex', alignItems: 'center', width: '80px' }}>请输入:</div>
           <Input
             value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
+            onChange={e => {
+              setValue(e.target.value)
             }}
           />
         </div>
@@ -416,18 +412,17 @@ const Index = () => {
           tableProps={tableProps}
           paginationProps={paginationProps}
           handleProps={handleProps}
-          getAllkeys={(key) => getAllkeys(key)}
-          onChange={(e) => {
+          onChange={e => {
             setParams({
               ...params,
               ...e,
-            });
+            })
           }}
         />
       </KKBContent>
     </ConfigProvider>
-  );
-};
-const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => ({});
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+  )
+}
+const mapStateToProps = state => ({})
+const mapDispatchToProps = dispatch => ({})
+export default connect(mapStateToProps, mapDispatchToProps)(Index)
